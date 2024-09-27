@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>회원 목록</title>
+</head>
+<body>
+    <h1>회원 목록</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="member : ${members}">
+                <td th:text="${member.id}">1</td>
+                <td th:text="${member.username}">John</td>
+                <td th:text="${member.email}">john@example.com</td>
+                <td>
+                    <form th:action="@{/members/delete/{id}(id=${member.id})}" method="post">
+                        <button type="submit">삭제</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <br/>
+
+    <!-- 회원가입 페이지로 이동하는 버튼 추가 -->
+    <a href="/register">
+        <button>회원가입하기</button>
+    </a>
+</body>
+</html>
